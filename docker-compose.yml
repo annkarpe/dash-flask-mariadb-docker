@@ -13,6 +13,16 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
+  
+  dash:
+    build: ./dash
+    ports:
+      - "8050:8050"
+    depends_on:
+      - app
+    environment:
+      FLASK_HOST: app
+      FLASK_PORT: 5000
 
 
 
